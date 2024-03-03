@@ -35,4 +35,20 @@ data class User(
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     val role: Role?
-)
+){
+    data class Builder(
+        var id: String? = null,
+        var createdDate: LocalDateTime? = null,
+        var updatedDate: LocalDateTime? = null,
+        var username: String? = null,
+        var email: String? = null,
+        var password: String? = null,
+        var role: Role? = null
+    ){
+        fun username(username: String) = apply { this.username = username }
+        fun email(email: String) = apply { this.email = email }
+        fun password(password: String) = apply { this.password = password }
+        fun role(role: Role) = apply { this.role = role }
+
+    }
+}
