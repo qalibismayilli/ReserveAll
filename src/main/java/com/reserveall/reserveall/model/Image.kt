@@ -31,4 +31,6 @@ data class Image(
     @JoinColumn(name = "project")
     val project: Project?
 
-)
+){
+
+}

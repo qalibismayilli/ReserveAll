@@ -36,7 +36,7 @@ data class Project(
     val description: String?,
 
     @OneToMany(mappedBy = "project", cascade = [CascadeType.ALL])
-    val images: List<Image>?
+    val images: List<Image>? = ArrayList()
 ) {
     data class Builder(
         var id: String? = null,
@@ -44,13 +44,13 @@ data class Project(
         var updatedDate: LocalDateTime? = null,
         var name: String? = null,
         var description: String? = null,
-        var image: List<Image>? = null,
+        var images: List<Image>? = null,
     ) {
         fun name(name: String) = apply { this.name = name }
         fun description(description: String) = apply { this.description = description }
-        fun image(image: List<Image>) = apply { this.image = image }
+        fun images(image: List<Image>) = apply { this.images = image }
 
-        fun build() = Project(id, createdDate, updatedDate, name, description, image)
+        fun build() = Project(id, createdDate, updatedDate, name, description, images)
     }
 
 }
