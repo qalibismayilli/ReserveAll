@@ -1,6 +1,5 @@
 package com.reserveall.reserveall.service;
 
-import com.reserveall.reserveall.model.Image;
 import com.reserveall.reserveall.repository.ImageRepository;
 import org.springframework.stereotype.Service;
 

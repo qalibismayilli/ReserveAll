@@ -7,7 +7,7 @@ import com.reserveall.reserveall.repository.ProjectRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.List;
 
 
 @Service
@@ -57,9 +57,10 @@ public class ProjectService {
         return convertToProjectResponseDto(fromDb);
     }
 
-    public ProjectResponseDto getProjectByName(String projectName){
-        Project fromDb = projectRepository.getProjectsByName(projectName).orElseThrow();
-        return convertToProjectResponseDto(fromDb);
+    public List<ProjectResponseDto> getProjectsByName(String projectName){
+        List<Project> fromDb = projectRepository.getProjectsByName(projectName).orElseThrow();
+
+        return fromDb.stream().map(p -> convertToProjectResponseDto(p)).toList();
     }
 
 }
