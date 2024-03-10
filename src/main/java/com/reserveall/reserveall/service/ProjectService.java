@@ -5,6 +5,7 @@ import com.reserveall.reserveall.dto.ProjectResponseDto;
 import com.reserveall.reserveall.model.Project;
 import com.reserveall.reserveall.repository.ProjectRepository;
 import jakarta.transaction.Transactional;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class ProjectService {
         this.projectRepository = projectRepository;
     }
 
-    private static ProjectResponseDto convertToProjectResponseDto(Project project){
+    private static ProjectResponseDto convertToProjectResponseDto(@NotNull Project project){
         return  new ProjectResponseDto(project.getId(),
                 project.getName(),
                 project.getDescription(),
@@ -55,6 +56,10 @@ public class ProjectService {
     public ProjectResponseDto getProjectById(String projectId){
         Project fromDb = projectRepository.findById(projectId).orElseThrow();
         return convertToProjectResponseDto(fromDb);
+    }
+
+    protected Project getOriginalProjectById(String projectId){
+        return projectRepository.findById(projectId).orElseThrow();
     }
 
     public List<ProjectResponseDto> getProjectsByName(String projectName){

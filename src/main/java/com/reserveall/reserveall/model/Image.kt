@@ -28,9 +28,15 @@ data class Image(
     val url: String?,
 
     @ManyToOne(cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
-    @JoinColumn(name = "project")
+    @JoinColumn(name = "project_id")
     val project: Project?
 
 ){
-
+    constructor(url: String?, project: Project?): this(
+        id = "",
+        createdDate = null,
+        updatedDate = null,
+        url = url,
+        project = project
+    )
 }
