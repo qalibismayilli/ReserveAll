@@ -28,7 +28,7 @@ public class ProjectService {
     }
 
     @Transactional
-    public ProjectResponseDto createProject(ProjectRequestDto request){
+    public ProjectResponseDto createProject(@NotNull ProjectRequestDto request){
         Project project = new Project.Builder().
                 name(request.getName()).
                 description(request.getDescription())
