@@ -36,5 +36,5 @@ data class FonImage(
         updatedDate = null,
         url = url
     )
-    }
+
 }
