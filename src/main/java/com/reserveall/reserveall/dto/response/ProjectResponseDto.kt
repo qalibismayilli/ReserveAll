@@ -1,4 +1,4 @@
-package com.reserveall.reserveall.dto
+package com.reserveall.reserveall.dto.response
 
 import com.fasterxml.jackson.databind.BeanDescription
 

@@ -52,5 +52,4 @@ data class Project(
 
         fun build() = Project(id, createdDate, updatedDate, name, description, images)
     }
-
 }

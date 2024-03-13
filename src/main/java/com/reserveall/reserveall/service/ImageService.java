@@ -1,11 +1,13 @@
 package com.reserveall.reserveall.service;
 
-import com.reserveall.reserveall.dto.ImageResponseDto;
+import com.reserveall.reserveall.dto.response.ImageResponseDto;
 import com.reserveall.reserveall.model.Image;
 import com.reserveall.reserveall.model.Project;
 import com.reserveall.reserveall.repository.ImageRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ImageService {
@@ -22,27 +24,33 @@ public class ImageService {
     }
 
     private static ImageResponseDto convertToImageResponseDto(Image image){
-        //TODO: sdcbjsdcbhsdc
-        return null;
+        return new ImageResponseDto(image.getId(), image.getUrl());
     }
 
     @Transactional
     public ImageResponseDto addImageToProject(String imageUrl, String projectId) {
         Project project = projectService.getOriginalProjectById(projectId);
         final Image fromDb = imageRepository.save(new Image(imageUrl, project));
-        return new ImageResponseDto(fromDb.getId(), fromDb.getUrl());
+        return convertToImageResponseDto(fromDb);
     }
 
     @Transactional
     public ImageResponseDto removeImage(String imageId) {
         Image fromDb = getOriginalImageById(imageId);
         imageRepository.delete(fromDb);
-        return new ImageResponseDto(fromDb.getId(), fromDb.getUrl());
+        return convertToImageResponseDto(fromDb);
     }
 
     public ImageResponseDto getImageById(String imageId) {
         Image fromDb = getOriginalImageById(imageId);
-        return new ImageResponseDto(fromDb.getId(), fromDb.getUrl());
+        return convertToImageResponseDto(fromDb);
     }
+
+    public List<ImageResponseDto> getImagesByProject(String projectId){
+        Project project = projectService.getOriginalProjectById(projectId);
+        return imageRepository.findAllByProject(project)
+                .stream().map(p ->convertToImageResponseDto(p)).toList();
+    }
+
 
 }

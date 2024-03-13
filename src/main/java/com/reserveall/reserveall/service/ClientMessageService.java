@@ -1,14 +1,13 @@
 package com.reserveall.reserveall.service;
 
-import com.reserveall.reserveall.dto.ClientMessageRequestDto;
-import com.reserveall.reserveall.dto.ClientMessageResponseDto;
+import com.reserveall.reserveall.dto.request.ClientMessageRequestDto;
+import com.reserveall.reserveall.dto.response.ClientMessageResponseDto;
 import com.reserveall.reserveall.model.ClientMessage;
 import com.reserveall.reserveall.repository.ClientMessageRepository;
 import jakarta.transaction.Transactional;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -39,12 +38,11 @@ public class ClientMessageService {
     }
 
     @Transactional
-    public ClientMessageResponseDto removeMessage(String id){
-        ClientMessage fromDb = clientMessageRepository.findById(id).orElseThrow();
+    public ClientMessageResponseDto removeMessage(String messageId){
+        ClientMessage fromDb = clientMessageRepository.findById(messageId).orElseThrow();
         clientMessageRepository.delete(fromDb);
         return convertToResponse(fromDb);
     }
-
 
     public List<ClientMessageResponseDto> getAllMessages(){
         List<ClientMessage> messages = clientMessageRepository.findAll();

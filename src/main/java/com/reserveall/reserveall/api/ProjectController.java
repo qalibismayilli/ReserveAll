@@ -1,7 +1,7 @@
 package com.reserveall.reserveall.api;
 
-import com.reserveall.reserveall.dto.ProjectRequestDto;
-import com.reserveall.reserveall.dto.ProjectResponseDto;
+import com.reserveall.reserveall.dto.request.ProjectRequestDto;
+import com.reserveall.reserveall.dto.response.ProjectResponseDto;
 import com.reserveall.reserveall.service.ProjectService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +29,11 @@ public class ProjectController {
     @PostMapping("/removeProject")
     public ResponseEntity<ProjectResponseDto> removeProject(@RequestParam String projectId) {
         return ResponseEntity.ok(projectService.removeProject(projectId));
+    }
+
+    @GetMapping("/getAllProjects")
+    public ResponseEntity<List<ProjectResponseDto>> getAllProjects(){
+        return ResponseEntity.ok(projectService.getALlProjects());
     }
 
     @GetMapping("getProjectById")

@@ -29,4 +29,12 @@ data class FonImage(
 
     @Column(name = "url")
     val url: String?
-)
+){
+    constructor(url : String?) : this(
+        id = "",
+        createdDate = null,
+        updatedDate = null,
+        url = url
+    )
+    }
+}

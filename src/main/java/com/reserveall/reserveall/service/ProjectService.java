@@ -1,7 +1,7 @@
 package com.reserveall.reserveall.service;
 
-import com.reserveall.reserveall.dto.ProjectRequestDto;
-import com.reserveall.reserveall.dto.ProjectResponseDto;
+import com.reserveall.reserveall.dto.request.ProjectRequestDto;
+import com.reserveall.reserveall.dto.response.ProjectResponseDto;
 import com.reserveall.reserveall.model.Project;
 import com.reserveall.reserveall.repository.ProjectRepository;
 import jakarta.transaction.Transactional;
@@ -47,10 +47,10 @@ public class ProjectService {
         return convertToProjectResponseDto(fromDb);
     }
 
-    @Transactional
-    public ProjectRequestDto updateProject(){
-        //TODO: ADD UPDATE METHOD BODY
-        return null;
+    public List<ProjectResponseDto> getALlProjects(){
+        return projectRepository.findAll()
+                .stream()
+                .map(p -> convertToProjectResponseDto(p)).toList();
     }
 
     public ProjectResponseDto getProjectById(String projectId){
