@@ -1,6 +1,7 @@
 package com.reserveall.reserveall.service;
 
 import com.reserveall.reserveall.dto.response.ImageResponseDto;
+import com.reserveall.reserveall.exception.GenericException;
 import com.reserveall.reserveall.model.FonImage;
 import com.reserveall.reserveall.repository.FonImageRepository;
 import jakarta.transaction.Transactional;
@@ -23,19 +24,21 @@ public class FonImageService {
 
     @Transactional
     public ImageResponseDto addFonImage(String fonImageUrl) {
-        FonImage image = new FonImage(fonImageUrl);
-        return convertToImageResponseDto(image);
+        FonImage fromDb = fonImageRepository.save(new FonImage(fonImageUrl));
+        return convertToImageResponseDto(fromDb);
     }
 
     @Transactional
     public ImageResponseDto removeFonImage(String imageId){
-        FonImage image = fonImageRepository.findById(imageId).orElseThrow();
+        FonImage image = fonImageRepository.findById(imageId)
+                .orElseThrow(() -> new GenericException("Fon image not found by id: " + imageId));
         fonImageRepository.delete(image);
         return convertToImageResponseDto(image);
     }
 
     public ImageResponseDto getFonImageById(String imageId){
-        return convertToImageResponseDto(fonImageRepository.findById(imageId).orElseThrow());
+        return convertToImageResponseDto(fonImageRepository.findById(imageId)
+                .orElseThrow(()->new GenericException("Fon image not found by id: " + imageId)));
     }
 
     public List<ImageResponseDto> getAllFonImages(){

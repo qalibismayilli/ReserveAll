@@ -2,6 +2,7 @@ package com.reserveall.reserveall.service;
 
 import com.reserveall.reserveall.dto.request.ClientMessageRequestDto;
 import com.reserveall.reserveall.dto.response.ClientMessageResponseDto;
+import com.reserveall.reserveall.exception.GenericException;
 import com.reserveall.reserveall.model.ClientMessage;
 import com.reserveall.reserveall.repository.ClientMessageRepository;
 import jakarta.transaction.Transactional;
@@ -39,7 +40,8 @@ public class ClientMessageService {
 
     @Transactional
     public ClientMessageResponseDto removeMessage(String messageId){
-        ClientMessage fromDb = clientMessageRepository.findById(messageId).orElseThrow();
+        ClientMessage fromDb = clientMessageRepository.findById(messageId)
+                .orElseThrow(() -> new GenericException("message not found by id:" + messageId));
         clientMessageRepository.delete(fromDb);
         return convertToResponse(fromDb);
     }

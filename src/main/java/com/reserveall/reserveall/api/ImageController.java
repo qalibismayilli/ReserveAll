@@ -17,7 +17,7 @@ public class ImageController {
         this.imageService = imageService;
     }
 
-    @PostMapping("/addImagetoProject")
+    @PostMapping("/addImageToProject")
     public ResponseEntity<ImageResponseDto> addImageToProject(@RequestParam String imageUrl, @RequestParam String projectId){
         return ResponseEntity.status(HttpStatus.CREATED)
                         .body(imageService.addImageToProject(imageUrl, projectId));
@@ -28,10 +28,6 @@ public class ImageController {
         return ResponseEntity.ok(imageService.removeImage(imageId));
     }
 
-    @GetMapping("/getImageById")
-    public ResponseEntity<ImageResponseDto> getImageById(@RequestParam String imageId){
-        return ResponseEntity.ok(imageService.getImageById(imageId));
-    }
 
     @GetMapping("/getImagesByProject")
     public ResponseEntity<List<ImageResponseDto>> getImagesByProject(@RequestParam String projectId){

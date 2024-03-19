@@ -41,14 +41,9 @@ public class ImageService {
         return convertToImageResponseDto(fromDb);
     }
 
-    public ImageResponseDto getImageById(String imageId) {
-        Image fromDb = getOriginalImageById(imageId);
-        return convertToImageResponseDto(fromDb);
-    }
-
     public List<ImageResponseDto> getImagesByProject(String projectId){
         Project project = projectService.getOriginalProjectById(projectId);
-        return imageRepository.findAllByProject(project)
+        return imageRepository.findAllByProject(project).orElseThrow()
                 .stream().map(p ->convertToImageResponseDto(p)).toList();
     }
 

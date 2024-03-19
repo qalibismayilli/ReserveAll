@@ -36,14 +36,9 @@ public class ProjectController {
         return ResponseEntity.ok(projectService.getALlProjects());
     }
 
-    @GetMapping("getProjectById")
-    public ResponseEntity<ProjectResponseDto> getProjectById(@RequestParam String projectId){
-        return ResponseEntity.ok(projectService.getProjectById(projectId));
-    }
-
     @GetMapping("getProjectsByName")
-    public ResponseEntity<List<ProjectResponseDto>> getProjectsByName(@RequestParam String projectId){
-        return ResponseEntity.ok(projectService.getProjectsByName(projectId));
+    public ResponseEntity<List<ProjectResponseDto>> getProjectsByName(@RequestParam String projectName){
+        return ResponseEntity.ok(projectService.getProjectsByName(projectName));
     }
 
 

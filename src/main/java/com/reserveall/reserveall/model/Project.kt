@@ -44,7 +44,7 @@ data class Project(
         var updatedDate: LocalDateTime? = null,
         var name: String? = null,
         var description: String? = null,
-        var images: List<Image>? = null,
+        var images: List<Image>? = ArrayList(),
     ) {
         fun name(name: String) = apply { this.name = name }
         fun description(description: String) = apply { this.description = description }
