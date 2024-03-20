@@ -49,6 +49,5 @@ data class User(
         fun email(email: String) = apply { this.email = email }
         fun password(password: String) = apply { this.password = password }
         fun role(role: Role) = apply { this.role = role }
-
     }
 }
