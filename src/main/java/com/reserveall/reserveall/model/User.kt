@@ -4,6 +4,7 @@ import jakarta.persistence.*
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.GenericGenerator
 import org.hibernate.annotations.UpdateTimestamp
+import org.springframework.security.core.userdetails.User
 import java.time.LocalDateTime
 
 @Entity
@@ -49,5 +50,7 @@ data class User(
         fun email(email: String) = apply { this.email = email }
         fun password(password: String) = apply { this.password = password }
         fun role(role: Role) = apply { this.role = role }
+
+        fun build() = User(null, null, null, username, email, password, role);
     }
 }

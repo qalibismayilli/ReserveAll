@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/ClientMessageController")
+@RequestMapping("/api/v1/clientMessageController")
 public class ClientMessageController {
     private final ClientMessageService clientMessageService;
 
@@ -25,12 +25,12 @@ public class ClientMessageController {
                 .body(clientMessageService.createMessage(request));
     }
 
-    @PostMapping("/removeMessage")
+    @PostMapping("/admin/removeMessage")
     public ResponseEntity<ClientMessageResponseDto> removeMessage(String messageId) {
         return ResponseEntity.ok(clientMessageService.removeMessage(messageId));
     }
 
-    @GetMapping("/getAllMessages")
+    @GetMapping("/admin/getAllMessages")
     public ResponseEntity<List<ClientMessageResponseDto>> getAllMessages(){
         return ResponseEntity.ok(clientMessageService.getAllMessages());
     }

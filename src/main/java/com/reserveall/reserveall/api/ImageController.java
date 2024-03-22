@@ -17,13 +17,13 @@ public class ImageController {
         this.imageService = imageService;
     }
 
-    @PostMapping("/addImageToProject")
+    @PostMapping("/admin/addImageToProject")
     public ResponseEntity<ImageResponseDto> addImageToProject(@RequestParam String imageUrl, @RequestParam String projectId){
         return ResponseEntity.status(HttpStatus.CREATED)
                         .body(imageService.addImageToProject(imageUrl, projectId));
     }
 
-    @PostMapping("/removeImage")
+    @PostMapping("/admin/removeImage")
     public ResponseEntity<ImageResponseDto> removeImage(@RequestParam String imageId){
         return ResponseEntity.ok(imageService.removeImage(imageId));
     }

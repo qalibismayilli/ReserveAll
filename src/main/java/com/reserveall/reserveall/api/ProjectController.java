@@ -19,14 +19,14 @@ public class ProjectController {
         this.projectService = projectService;
     }
 
-    @PostMapping("/createProject")
+    @PostMapping("/admin/createProject")
     public ResponseEntity<ProjectResponseDto> createProject(@RequestBody ProjectRequestDto request) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(projectService.createProject(request));
     }
 
-    @PostMapping("/removeProject")
+    @PostMapping("/admin/removeProject")
     public ResponseEntity<ProjectResponseDto> removeProject(@RequestParam String projectId) {
         return ResponseEntity.ok(projectService.removeProject(projectId));
     }
@@ -36,10 +36,8 @@ public class ProjectController {
         return ResponseEntity.ok(projectService.getALlProjects());
     }
 
-    @GetMapping("getProjectsByName")
+    @GetMapping("/getProjectsByName")
     public ResponseEntity<List<ProjectResponseDto>> getProjectsByName(@RequestParam String projectName){
         return ResponseEntity.ok(projectService.getProjectsByName(projectName));
     }
-
-
 }
