@@ -24,6 +24,9 @@ data class Image(
     @UpdateTimestamp
     val updatedDate: LocalDateTime?,
 
+    @Column(name = "name")
+    val name: String?,
+
     @Column(name = "url")
     val url: String?,
 
@@ -32,11 +35,12 @@ data class Image(
     val project: Project?
 
 ){
-    constructor(url: String?, project: Project?): this(
+    constructor(name: String?, url: String?): this(
         id = "",
         createdDate = null,
         updatedDate = null,
+        name = name,
         url = url,
-        project = project
+        project = null
     )
 }

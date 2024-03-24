@@ -93,6 +93,14 @@
             <scope>test</scope>
         </dependency>
 
+<!--        cloudinary-->
+        <dependency>
+            <groupId>com.cloudinary</groupId>
+            <artifactId>cloudinary-http44</artifactId>
+            <version>1.31.0</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>

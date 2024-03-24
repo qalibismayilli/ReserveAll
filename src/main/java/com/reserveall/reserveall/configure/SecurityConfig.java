@@ -47,7 +47,7 @@ public class SecurityConfig {
                 .cors().and()
                 .authorizeHttpRequests( auth->{
                     auth.requestMatchers("/api/v1/project/admin/**",
-                            "/api/v1/image/**" , "/api/v1/fonImage/admin/**",
+                            "/api/v1/image/**" ,
                                     "/api/v1/clientMessageController/admin/**")
                             .hasAuthority("ADMIN");
                 })
