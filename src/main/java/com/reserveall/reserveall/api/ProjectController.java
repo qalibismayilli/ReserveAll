@@ -3,6 +3,7 @@ package com.reserveall.reserveall.api;
 import com.reserveall.reserveall.dto.request.ProjectRequestDto;
 import com.reserveall.reserveall.dto.response.ProjectResponseDto;
 import com.reserveall.reserveall.service.ProjectService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class ProjectController {
     }
 
     @PostMapping("/admin/createProject")
-    public ResponseEntity<ProjectResponseDto> createProject(@RequestBody ProjectRequestDto request) {
+    public ResponseEntity<ProjectResponseDto> createProject(@Valid @RequestBody ProjectRequestDto request) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(projectService.createProject(request));

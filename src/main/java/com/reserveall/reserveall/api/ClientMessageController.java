@@ -3,6 +3,7 @@ package com.reserveall.reserveall.api;
 import com.reserveall.reserveall.dto.request.ClientMessageRequestDto;
 import com.reserveall.reserveall.dto.response.ClientMessageResponseDto;
 import com.reserveall.reserveall.service.ClientMessageService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ public class ClientMessageController {
     }
 
     @PostMapping("/createMessage")
-    public ResponseEntity<ClientMessageResponseDto> createMessage(@RequestBody ClientMessageRequestDto request) {
+    public ResponseEntity<ClientMessageResponseDto> createMessage(@Valid @RequestBody ClientMessageRequestDto request) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(clientMessageService.createMessage(request));
