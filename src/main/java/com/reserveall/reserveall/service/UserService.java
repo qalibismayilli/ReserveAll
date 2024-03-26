@@ -3,13 +3,13 @@ package com.reserveall.reserveall.service;
 import com.reserveall.reserveall.dto.request.UserRequestDto;
 import com.reserveall.reserveall.dto.response.UserResponseDto;
 import com.reserveall.reserveall.exception.GenericException;
+import com.reserveall.reserveall.model.Role;
 import com.reserveall.reserveall.model.User;
 import com.reserveall.reserveall.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
 public class UserService {
@@ -28,7 +28,7 @@ public class UserService {
                 .username(request.getUsername())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .role(request.getRole())
+                .role(Role.ADMIN)
                 .build();
         User fromDb = userRepository.save(user);
         return new UserResponseDto(fromDb.getUsername(), fromDb.getEmail(), fromDb.getRole());

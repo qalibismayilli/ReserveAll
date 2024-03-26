@@ -5,7 +5,6 @@ import com.reserveall.reserveall.dto.response.TokenResponse;
 import com.reserveall.reserveall.dto.response.UserResponseDto;
 import com.reserveall.reserveall.exception.GenericException;
 import com.reserveall.reserveall.util.TokenGenerator;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

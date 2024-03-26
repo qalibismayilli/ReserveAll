@@ -7,7 +7,6 @@ import com.reserveall.reserveall.model.Project;
 import com.reserveall.reserveall.repository.ProjectRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.constraints.NotNull;
-import org.jetbrains.annotations.Contract;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

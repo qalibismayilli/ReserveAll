@@ -1,10 +1,17 @@
 package com.reserveall.reserveall.dto.request
 
-import com.reserveall.reserveall.model.Role
+import jakarta.validation.constraints.Email
+import jakarta.validation.constraints.NotBlank
+import jakarta.validation.constraints.NotEmpty
 
 data class UserRequestDto(
+    @field:NotBlank
     val username: String?,
+
+    @field:Email
+    @field:NotEmpty
     val email: String?,
-    val password: String?,
-    val role: Role?
+
+    @field:NotBlank
+    val password: String?
 )
