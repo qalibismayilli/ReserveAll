@@ -36,7 +36,7 @@ public class ImageController {
         return ResponseEntity.ok(imageService.getImagesByProject(projectId));
     }
 
-    @PostMapping("/upload")
+    @PostMapping("/admin/upload")
     public ResponseEntity<Map> upload(ImageModel imageModel) {
         try {
             return imageService.uploadImage(imageModel);

@@ -47,8 +47,9 @@ public class SecurityConfig {
                 .cors().and()
                 .authorizeHttpRequests( auth->{
                     auth.requestMatchers("/api/v1/project/admin/**",
-                            "/api/v1/image/**" ,
-                                    "/api/v1/clientMessageController/admin/**")
+                            "/api/v1/image/admin/**" ,
+                                    "/api/v1/clientMessageController/admin/**",
+                                    "/api/v1/user/createUser")
                             .hasAuthority("ADMIN");
                 })
                 .formLogin(fl->fl.disable())
@@ -66,7 +67,7 @@ public class SecurityConfig {
     public WebSecurityCustomizer webSecurityCustomizer(){
         return(web -> web.ignoring()
                 .requestMatchers("/api/v1/project/getAllProjects", "/api/v1/project/getProjectsByName",
-                        "/api/v1/fonImage/getFonImageById", "/api/v1/clientMessageController/createMessage",
+                        "/api/v1/image/getImagesByProject","/api/v1/clientMessageController/createMessage",
                         "/api/auth/login"));
     }
 
