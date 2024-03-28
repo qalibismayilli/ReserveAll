@@ -23,7 +23,7 @@ public class StartupConfig implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 //        userService.createUser(
-//                new UserRequestDto("IronPawn", "qalibismayilli8@gmail.com", "1234", Role.ADMIN ));
+//                new UserRequestDto("IronPawn", "qalibismayilli8@gmail.com", "1234" ));
 
     }
 }
