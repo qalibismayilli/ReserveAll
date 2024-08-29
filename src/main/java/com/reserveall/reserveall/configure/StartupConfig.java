@@ -1,8 +1,6 @@
 package com.reserveall.reserveall.configure;
 
-import com.reserveall.reserveall.dto.request.ProjectRequestDto;
 import com.reserveall.reserveall.dto.request.UserRequestDto;
-import com.reserveall.reserveall.model.Role;
 import com.reserveall.reserveall.service.ProjectService;
 import com.reserveall.reserveall.service.UserService;
 import org.springframework.boot.CommandLineRunner;
@@ -22,8 +20,8 @@ public class StartupConfig implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-//        userService.createUser(
-//                new UserRequestDto("IronPawn", "qalibismayilli8@gmail.com", "1234" ));
+        userService.createUser(
+                new UserRequestDto("IronPawn", "qalibismayilli8@gmail.com", "1234" ));
 
     }
 }

@@ -25,9 +25,6 @@ public class ImageService {
         this.cloudinaryService = cloudinaryService;
     }
 
-    private Image getOriginalImageById(String imageId) {
-        return imageRepository.findById(imageId).orElseThrow();
-    }
 
     private static ImageResponseDto convertToImageResponseDto(Image image){
         return new ImageResponseDto(image.getId(), image.getUrl());
@@ -35,11 +32,11 @@ public class ImageService {
 
     @Transactional
     public ImageResponseDto addImageToProject(String imageId, String projectId) {
-        Project project = projectService.getOriginalProjectById(projectId);
-        Image image = imageRepository.findById(imageId)
-                .orElseThrow(()-> new GenericException("not found image by id:" + imageId));
-
-        imageRepository.addProjectToImage(projectId, imageId);
+        try{
+            imageRepository.addProjectToImage(projectId, imageId);
+        }catch (Exception ex){
+            throw new GenericException("not found image or project for this information");
+        }
 
         Image fromDb = imageRepository.findById(imageId).get();
         return convertToImageResponseDto(fromDb);
@@ -47,7 +44,8 @@ public class ImageService {
 
     @Transactional
     public ImageResponseDto removeImage(String imageId) {
-        Image fromDb = getOriginalImageById(imageId);
+        Image fromDb = imageRepository.findById(imageId)
+                .orElseThrow(()-> new GenericException("not found image by id:" + imageId));
         imageRepository.delete(fromDb);
         return convertToImageResponseDto(fromDb);
     }
