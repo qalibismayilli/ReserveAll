@@ -52,11 +52,10 @@ public class SecurityConfig {
                                     "/api/v1/clientMessageController/admin/**",
                                     "/api/v1/user/createUser")
                             .hasAuthority("ADMIN")
-                            .anyRequest().authenticated()
                             .requestMatchers("/api/v1/project/getAllProjects", "/api/v1/project/getProjectsByName",
                                     "/api/v1/image/getImagesByProject","/api/v1/clientMessageController/createMessage",
-                                    "/api/auth/login")
-                            .permitAll();
+                                    "/api/auth/login").permitAll()
+                            .anyRequest().authenticated();
                 })
                 .formLogin(fl->fl.disable())
                 .httpBasic(httpBasic->httpBasic.disable())
