@@ -51,7 +51,12 @@ public class SecurityConfig {
                             "/api/v1/image/admin/**" ,
                                     "/api/v1/clientMessageController/admin/**",
                                     "/api/v1/user/createUser")
-                            .hasAuthority("ADMIN");
+                            .hasAuthority("ADMIN")
+                            .anyRequest().authenticated()
+                            .requestMatchers("/api/v1/project/getAllProjects", "/api/v1/project/getProjectsByName",
+                                    "/api/v1/image/getImagesByProject","/api/v1/clientMessageController/createMessage",
+                                    "/api/auth/login")
+                            .permitAll();
                 })
                 .formLogin(fl->fl.disable())
                 .httpBasic(httpBasic->httpBasic.disable())
@@ -64,13 +69,14 @@ public class SecurityConfig {
 
     }
 
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer(){
-        return(web -> web.ignoring()
-                .requestMatchers("/api/v1/project/getAllProjects", "/api/v1/project/getProjectsByName",
-                        "/api/v1/image/getImagesByProject","/api/v1/clientMessageController/createMessage",
-                        "/api/auth/login"));
-    }
+    //    this bean deactivate securityFilterChain for login
+//    @Bean
+//    public WebSecurityCustomizer webSecurityCustomizer(){
+//        return(web -> web.ignoring()
+//                .requestMatchers("/api/v1/project/getAllProjects", "/api/v1/project/getProjectsByName",
+//                        "/api/v1/image/getImagesByProject","/api/v1/clientMessageController/createMessage",
+//                        "/api/auth/login"));
+//    }
 
     @Bean
     public WebMvcConfigurer corsConfigurer(){
